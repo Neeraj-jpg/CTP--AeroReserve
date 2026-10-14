@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AeroReserve — flight booking</title>
+<style>
+:root{--navy:#102b46;--blue:#1463a5;--cyan:#14b8c5;--gold:#f4a62a;--ink:#132238;--muted:#64748b;--line:#dce5ee;--pale:#f4f8fb;--green:#16835d;--red:#be3d4a;--white:#fff;--shadow:0 12px 36px rgba(24,52,78,.10)}
+*{box-sizing:border-box}body{margin:0;background:#f3f7fa;color:var(--ink);font:15px/1.48 "Segoe UI",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}header{height:74px;background:linear-gradient(105deg,#102b46,#174d78);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,22px);box-shadow:0 4px 18px rgba(8,25,43,.18)}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:.2px}.brandmark{height:38px;width:38px;border-radius:12px;background:linear-gradient(135deg,#14b8c5,#7ce1df);display:grid;place-items:center;color:#102b46;font-size:20px}.brand small{display:block;color:#bad1e3;font-size:10px;letter-spacing:1.2px;font-weight:600;margin-top:-3px}.status{display:flex;gap:8px}.pill{position:relative;border:1px solid rgba(215,235,249,.35);border-radius:999px;color:#eaf4fb;background:rgba(255,255,255,.08);padding:7px 12px;font-size:12px;font-weight:700}.pill:hover,.pill[aria-expanded="true"]{background:rgba(255,255,255,.18)}.popover{display:none;position:absolute;z-index:12;right:0;top:43px;width:270px;background:white;color:var(--ink);border:1px solid var(--line);border-radius:13px;padding:15px;box-shadow:var(--shadow);font-size:12px;font-weight:500}.popover.open{display:block}.popover strong{display:block;margin-bottom:6px;color:var(--navy);font-size:13px}.poprow{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #edf1f5;padding:6px 0}.poprow span:first-child{color:var(--muted)}.hero{background:linear-gradient(125deg,#143f67,#1775a1);color:white;padding:32px max(5vw,22px) 90px}.hero h1{font-size:31px;margin:0 0 4px;letter-spacing:-.4px}.hero p{margin:0;color:#d2e8f6;font-size:14px}.hero .tag{display:inline-flex;margin-top:14px;color:#102b46;background:#c8f2ef;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:800;letter-spacing:.2px}.wrap{max-width:1240px;margin:-62px auto 0;padding:0 22px 44px}.searchbox{background:white;border:1px solid #e4ebf1;border-radius:18px;padding:21px;box-shadow:var(--shadow)}.searchgrid{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 1.1fr 140px;gap:12px;align-items:end}.field label{display:block;margin:0 0 6px;color:#50647a;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}.field input,.field select{width:100%;height:44px;border:1px solid #d7e1ea;border-radius:10px;padding:0 11px;background:white;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:#2a8cc1;box-shadow:0 0 0 3px rgba(20,128,173,.12)}.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:800;transition:transform .12s,filter .12s}.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}.btn-primary{background:linear-gradient(100deg,#106aa6,#1689a7);color:white;box-shadow:0 7px 16px rgba(20,104,157,.22)}.btn-ghost{background:#eef5f9;color:#194d73}.btn-gold{background:var(--gold);color:#2b3744}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.85fr);gap:20px;margin-top:20px;align-items:start}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px}.sectionhead h2{font-size:18px;margin:0;color:var(--navy)}.subtle{font-size:12px;color:var(--muted)}.results{display:grid;gap:12px}.empty{border:1px dashed #c8d6e2;background:rgba(255,255,255,.65);padding:28px;text-align:center;border-radius:14px;color:var(--muted)}.card{background:white;border:1px solid #e1eaf1;border-radius:15px;box-shadow:0 5px 18px rgba(24,52,78,.05);padding:16px}.resulttop{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.timings{display:flex;align-items:center;gap:12px;flex:1}.timeblock strong{display:block;font-size:20px;color:var(--navy)}.timeblock small{color:var(--muted)}.routebar{flex:1;min-width:70px;text-align:center;color:var(--muted);font-size:11px}.routebar .line{height:2px;background:linear-gradient(90deg,#4aa7ca,#c7d7e3);position:relative;margin:9px 0}.routebar .line:before,.routebar .line:after{content:"";position:absolute;top:-4px;width:9px;height:9px;border-radius:50%;background:#1787a8}.routebar .line:before{left:0}.routebar .line:after{right:0;background:#f2a82e}.fare{text-align:right;min-width:120px}.fare strong{display:block;font-size:23px;color:var(--navy)}.fare small{color:var(--muted)}.legs{border-top:1px solid #edf1f5;margin-top:14px;padding-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}.legchip{background:#f4f8fb;border-radius:9px;padding:9px 10px}.legchip strong{font-size:12px;color:#174d78}.legchip span{display:block;color:#62768a;font-size:11px}.connection-note{color:#a15e00;font-size:11px;font-weight:700;margin-top:7px}.cardfoot{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.availability{font-size:11px;color:var(--green);font-weight:700}.select-btn{padding:9px 15px}.side{position:sticky;top:14px;display:grid;gap:14px}.panel{background:white;border:1px solid #e1eaf1;border-radius:15px;box-shadow:0 5px 18px rgba(24,52,78,.05);padding:16px}.panel h2{font-size:17px;color:var(--navy);margin:0 0 9px}.panel h3{font-size:13px;color:#314a62;margin:14px 0 8px}.selection-empty{font-size:13px;color:var(--muted);background:#f5f8fb;border-radius:9px;padding:12px}.selected-summary{background:#eef7fb;border:1px solid #d5eaf4;border-radius:10px;padding:11px;margin-bottom:12px}.selected-summary strong{color:#124f79}.selected-summary .subtle{margin-top:3px}.formrows{display:grid;grid-template-columns:1fr 85px;gap:8px;margin:8px 0}.formrows input{height:38px;border:1px solid #d7e1ea;border-radius:8px;padding:0 9px;width:100%}.panel select{height:39px;border:1px solid #d7e1ea;border-radius:8px;padding:0 9px;width:100%;background:white}.panel .wide{width:100%;margin-top:10px}.pricebox{border-top:1px solid #e8eef3;margin-top:12px;padding-top:9px}.price-line{display:flex;justify-content:space-between;color:#53677c;font-size:12px;padding:3px 0}.price-line.total{font-size:15px;color:var(--navy);font-weight:800;border-top:1px solid #e8eef3;margin-top:5px;padding-top:9px}.seatgrid{display:grid;grid-template-columns:repeat(6,minmax(31px,1fr));gap:6px;margin-top:8px}.seat{height:31px;border:1px solid #cbd9e5;background:#f3f8fb;color:#426078;border-radius:7px;font-size:9px;font-weight:800;display:grid;place-items:center}.seat.taken{background:#f2c9c9;border-color:#e6a5a5;color:#8d3434}.seat.window{outline:1px solid #8bc9da}.mapmeta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted)}.seatlegend{display:flex;gap:10px;font-size:10px;color:var(--muted);margin-top:8px}.legendbox{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;background:#f3f8fb;border:1px solid #cbd9e5}.legendbox.t{background:#f2c9c9;border-color:#e6a5a5}.livebar{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px;margin-top:10px}.dot{width:8px;height:8px;background:#a5b3c0;border-radius:50%}.dot.live{background:#15a56f;box-shadow:0 0 0 4px #d9f4e9}.bookingresult{display:none;background:#ecf9f3;border:1px solid #b8e6d0;border-radius:12px;padding:13px;margin-top:12px}.bookingresult.show{display:block}.bookingresult strong{color:#087449}.notice{display:none;padding:10px 12px;border-radius:9px;margin-top:10px;font-size:12px}.notice.show{display:block}.notice.error{background:#fff0f0;color:#9b2631}.notice.success{background:#ecf9f3;color:#087449}.footnote{font-size:11px;color:#778899;text-align:center;margin:24px 0 0}.loading{opacity:.65;pointer-events:none}.tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.tagmini{font-size:10px;border:1px solid #d8e4ec;border-radius:999px;padding:3px 7px;color:#557087;background:#fbfdfe}
+@media(max-width:960px){.searchgrid{grid-template-columns:repeat(3,1fr)}.layout{grid-template-columns:1fr}.side{position:static;grid-template-columns:1fr 1fr}.side .panel:first-child{grid-column:1/-1}}
+@media(max-width:620px){header{padding:0 16px;height:66px}.brand{font-size:17px}.status{gap:4px}.pill{padding:6px 8px;font-size:10px}.hero{padding:25px 18px 82px}.hero h1{font-size:25px}.wrap{padding:0 12px 30px}.searchgrid{grid-template-columns:1fr 1fr}.searchgrid .field:first-child,.searchgrid .field:nth-child(2){grid-column:span 1}.layout{gap:12px}.side{grid-template-columns:1fr}.side .panel:first-child{grid-column:auto}.resulttop{flex-wrap:wrap}.fare{min-width:100px}.timings{min-width:220px}.card{padding:13px}.searchbox{padding:15px}.sectionhead h2{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="brandmark">✈</div><div>AeroReserve<small>FLIGHT BOOKING · SAMPLE PLATFORM</small></div></div>
+  <div class="status">
+    <button class="pill" id="pillApi" aria-expanded="false">API <span class="popover" id="popApi"><strong>API status</strong><span id="apiPopText">Checking service…</span></span></button>
+    <button class="pill" id="pillLive" aria-expanded="false">Live <span class="popover" id="popLive"><strong>Live flight updates</strong><span id="livePopText">Search and select an itinerary to subscribe.</span></span></button>
+    <button class="pill" id="pillDb" aria-expanded="false">DB <span class="popover" id="popDb"><strong>Data store</strong><span id="dbPopText">Loading store information…</span></span></button>
+    <button class="pill" id="pillSubs" aria-expanded="false">Subs <span class="popover" id="popSubs"><strong>Connected browser tabs</strong><span id="subsPopText">0 active SSE subscriptions</span></span></button>
+  </div>
+</header>
+<section class="hero">
+  <h1>Find your next flight</h1>
+  <p>Compare direct flights and connections, choose a cabin, and book every leg under one PNR.</p>
+  <span class="tag">✦ FICTIONAL SAMPLE SCHEDULE · ALL TIMES LOCAL (IST)</span>
+</section>
+<main class="wrap">
+  <section class="searchbox">
+    <div class="searchgrid">
+      <div class="field"><label for="origin">From</label><select id="origin"></select></div>
+      <div class="field"><label for="destination">To</label><select id="destination"></select></div>
+      <div class="field"><label for="travelDate">Travel date</label><input type="date" id="travelDate"></div>
+      <div class="field"><label for="paxCount">Passengers</label><select id="paxCount"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+      <div class="field"><label for="cabin">Cabin</label><select id="cabin"><option>Economy</option><option>Premium Economy</option><option>Business</option><option>First</option></select></div>
+      <button class="btn btn-primary" id="searchBtn">Search flights</button>
+    </div>
+    <div class="tagrow"><span class="tagmini">Up to 2 connections</span><span class="tagmini">45-minute minimum layover</span><span class="tagmini">Seat map per flight leg</span></div>
+  </section>
+
+  <div class="layout">
+    <section>
+      <div class="sectionhead"><h2>Available itineraries</h2><span class="subtle" id="resultCount">Choose a route and date to begin</span></div>
+      <div class="results" id="results"><div class="empty">Search sample flights to see direct and connecting options.</div></div>
+    </section>
+    <aside class="side">
+      <section class="panel">
+        <h2>Your booking</h2>
+        <div id="selection" class="selection-empty">Select an itinerary to continue. Each connecting flight gets its own seat assignment.</div>
+        <div id="passengerFields"></div>
+        <h3>Seat allocation</h3>
+        <select id="strategy"><option value="family-aware">Keep group together</option><option value="first-fit">First available seats</option><option value="window-first">Prefer window seats</option></select>
+        <div id="fareBox" class="pricebox" style="display:none"></div>
+        <button class="btn btn-gold wide" id="bookBtn" disabled>Book itinerary</button>
+        <div id="bookingResult" class="bookingresult"></div>
+        <div id="bookingNotice" class="notice"></div>
+      </section>
+      <section class="panel">
+        <h2>Seat map preview</h2>
+        <div id="mapTitle" class="mapmeta"><span>Select an itinerary</span><span></span></div>
+        <div id="seatMap" class="seatgrid"><div class="subtle" style="grid-column:1/-1">Choose a flight leg to inspect cabin seats.</div></div>
+        <div class="seatlegend"><span><i class="legendbox"></i>Available</span><span><i class="legendbox t"></i>Reserved</span><span>Outlined = window</span></div>
+        <div class="livebar"><i class="dot" id="liveDot"></i><span id="liveStatus">Not subscribed</span></div>
+      </section>
+    </aside>
+  </div>
+  <p class="footnote">AeroReserve is an academic demo with fictional schedules. It does not sell tickets or connect to a live airline inventory.</p>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  let chosen = null, selectedLeg = 0, events = [], activeSubs = 0, lastHealth = null;
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const money = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', {maximumFractionDigits:2,minimumFractionDigits:2});
+  const localDate = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const dateInput = $('travelDate');
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1); dateInput.value = localDate(tomorrow); dateInput.min = localDate(new Date());
+  const cabinValue = () => $('cabin').value;
+  const paxValue = () => Number($('paxCount').value);
+  const closePops = () => document.querySelectorAll('.popover.open').forEach(p => {p.classList.remove('open'); p.parentElement.setAttribute('aria-expanded','false');});
+  ['Api','Live','Db','Subs'].forEach(key => {
+    const btn = $('pill'+key), pop = $('pop'+key);
+    btn.addEventListener('click', (e) => { e.stopPropagation(); const was=pop.classList.contains('open'); closePops(); if(!was){pop.classList.add('open');btn.setAttribute('aria-expanded','true');} });
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.pill')) closePops(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closePops(); });
+
+  function renderPassengerFields() {
+    const n=paxValue(); let html='';
+    for(let i=0;i<n;i++) html += `<div class="formrows"><input class="pname" maxlength="60" placeholder="Passenger ${i+1} name" value="${i===0?'Guest':''}"><input class="page" type="number" min="0" max="125" value="30" aria-label="Passenger ${i+1} age"></div>`;
+    $('passengerFields').innerHTML=html;
+    if(chosen) refreshQuote();
+  }
+  function passengers() {
+    return [...document.querySelectorAll('.pname')].map((el,i)=>({name:el.value.trim(),age:Number(document.querySelectorAll('.page')[i].value)}));
+  }
+  async function loadAirports(){
+    const list=await fetch('/api/airports').then(r=>r.json());
+    for(const id of ['origin','destination']){
+      $(id).innerHTML=list.map(a=>`<option value="${esc(a.code)}">${esc(a.city)} (${esc(a.code)})</option>`).join('');
+    }
+    $('origin').value='VGA'; $('destination').value='DEL';
+  }
+  async function refreshHealth(){
+    try{
+      const t0=performance.now(); const r=await fetch('/api/health'); if(!r.ok) throw new Error('unavailable');
+      lastHealth=await r.json(); const ms=Math.round(performance.now()-t0);
+      $('pillApi').firstChild.textContent='API · OK';
+      $('apiPopText').innerHTML=`<span class="poprow"><span>Status</span><b>Reachable</b></span><span class="poprow"><span>Response</span><b>${ms} ms</b></span><span class="poprow"><span>Active bookings</span><b>${lastHealth.active_bookings}</b></span>`;
+      $('dbPopText').innerHTML=`<span class="poprow"><span>Engine</span><b>${esc(lastHealth.database)}</b></span><span class="poprow"><span>Active bookings</span><b>${lastHealth.active_bookings}</b></span><span class="poprow"><span>API docs</span><b>/docs</b></span>`;
+      $('subsPopText').textContent=`${lastHealth.subscribers} active SSE subscriptions across this app process.`;
+    }catch(_){$('pillApi').firstChild.textContent='API · OFF';$('apiPopText').textContent='API unreachable. Start the server at port 8000.';}
+  }
+  function stopEvents(){ events.forEach(es=>es.close()); events=[]; activeSubs=0; updateLive(); }
+  function updateLive(){
+    $('liveDot').classList.toggle('live',activeSubs>0);
+    $('liveStatus').textContent=activeSubs?`Live updates on ${activeSubs} selected flight leg${activeSubs===1?'':'s'}`:'Not subscribed';
+    $('livePopText').textContent=activeSubs?`Listening to ${activeSubs} flight-leg stream(s). Booking changes refresh this seat map.`:'Select an itinerary to subscribe to live seat updates.';
+    const processSubs=lastHealth?.subscribers ?? activeSubs;
+    $('subsPopText').textContent=`This tab: ${activeSubs} SSE stream(s) · app process: ${processSubs}. Open a second tab to demonstrate fan-out.`;
+  }
+  function routeTime(value){return String(value).slice(11,16);}
+  function duration(min){const h=Math.floor(min/60),m=min%60;return `${h}h ${String(m).padStart(2,'0')}m`;}
+  function itineraryCard(it,index){
+    const first=it.legs[0], last=it.legs[it.legs.length-1];
+    const legHtml=it.legs.map((leg,i)=>`<div class="legchip"><strong>${esc(leg.flight_number)} · ${esc(leg.origin.code)} → ${esc(leg.destination.code)}</strong><span>${routeTime(leg.departure_at)}–${routeTime(leg.arrival_at)} · ${leg.duration_minutes?duration(leg.duration_minutes):''}</span><span>${esc(leg.cabin_seats_available)} ${esc(cabinValue())} seats left</span></div>`).join('');
+    const connection=it.connection_count?`${it.connection_count} connection${it.connection_count>1?'s':''} · min layover 45 min`:'Non-stop';
+    return `<article class="card"><div class="resulttop"><div class="timings"><div class="timeblock"><strong>${routeTime(first.departure_at)}</strong><small>${esc(it.origin)} · ${esc(first.origin.city)}</small></div><div class="routebar"><span>${esc(connection)}</span><div class="line"></div><small>${duration(it.duration_minutes)} total</small></div><div class="timeblock"><strong>${routeTime(last.arrival_at)}</strong><small>${esc(it.destination)} · ${esc(last.destination.city)}</small></div></div><div class="fare"><strong>${money(it.quote.total)}</strong><small>total for ${paxValue()} · ${esc(cabinValue())}</small></div></div><div class="legs">${legHtml}</div>${it.connection_count?`<div class="connection-note">✦ Change aircraft at ${it.legs.slice(0,-1).map(l=>esc(l.destination.city)).join(', ')}</div>`:''}<div class="cardfoot"><span class="availability">${it.legs.every(l=>l.cabin_seats_available>0)?'Seats available on every leg':'Some legs are full'}</span><button class="btn btn-primary select-btn" data-index="${index}">Select itinerary</button></div></article>`;
+  }
+  async function search(preserveBooking=false){
+    stopEvents(); chosen=null; $('selection').className='selection-empty'; $('selection').textContent='Select an itinerary to continue. Each connecting flight gets its own seat assignment.'; $('fareBox').style.display='none'; $('bookBtn').disabled=true;
+    if(!preserveBooking) $('bookingResult').classList.remove('show');
+    document.getElementById('legTabs')?.remove(); $('mapTitle').innerHTML='<span>Select an itinerary</span><span></span>'; $('seatMap').innerHTML='<div class="subtle" style="grid-column:1/-1">Choose an itinerary to preview cabin seats.</div>';
+    const results=$('results'); results.classList.add('loading'); results.innerHTML='<div class="empty">Searching sample flight schedule…</div>';
+    const q=new URLSearchParams({origin:$('origin').value,destination:$('destination').value,travel_date:dateInput.value,cabin:cabinValue(),max_connections:'2',passengers:String(paxValue())});
+    try{
+      const response=await fetch('/api/flights/search?'+q); const body=await response.json(); if(!response.ok) throw new Error(body.message||'Search failed');
+      const items=body.itineraries||[]; $('resultCount').textContent=`${items.length} option${items.length===1?'':'s'} · ${body.travel_date} · ${body.cabin}`;
+      results.innerHTML=items.length?items.map(itineraryCard).join(''):'<div class="empty">No itinerary found for this date. Try another airport pair or travel date.</div>';
+      results.querySelectorAll('[data-index]').forEach(btn=>btn.addEventListener('click',()=>selectItinerary(items[Number(btn.dataset.index)])));
+    }catch(err){results.innerHTML=`<div class="empty">${esc(err.message)}</div>`;$('resultCount').textContent='Search could not be completed';}
+    results.classList.remove('loading');
+  }
+  async function selectItinerary(it){
+    stopEvents(); chosen=it; selectedLeg=0;
+    $('selection').className='selected-summary';
+    $('selection').innerHTML=`<strong>${esc(it.origin)} → ${esc(it.destination)}</strong><div class="subtle">${it.legs.map(l=>esc(l.flight_number)).join(' · ')} · ${it.connection_count?it.connection_count+' connection(s)':'non-stop'} · ${esc(it.travel_date)}</div>`;
+    $('bookBtn').disabled=false; $('bookingResult').classList.remove('show');
+    await refreshQuote(); renderLegTabs(); openStreams(); await refreshSeatMap();
+  }
+  async function refreshQuote(){
+    if(!chosen)return;
+    const payload={flight_ids:chosen.legs.map(l=>l.flight_id),travel_date:chosen.travel_date,cabin:cabinValue(),passengers:passengers()};
+    if(payload.passengers.some(p=>!p.name||p.age<0||p.age>125)){ $('fareBox').style.display='none'; return; }
+    try{
+      const r=await fetch('/api/bookings/quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const q=await r.json(); if(!r.ok)throw new Error(q.message||'Quote failed');
+      $('fareBox').style.display='block';
+      $('fareBox').innerHTML=q.lines.map(l=>`<div class="price-line"><span>${esc(l.flight_number)} · ${esc(l.route)}</span><b>${money(l.amount)}</b></div>`).join('')+`<div class="price-line"><span>Tax (5%)</span><b>${money(q.tax)}</b></div><div class="price-line"><span>Service fee</span><b>${money(q.service_fee)}</b></div><div class="price-line total"><span>Total</span><span>${money(q.total)}</span></div>`;
+    }catch(err){$('fareBox').style.display='block';$('fareBox').textContent=err.message;}
+  }
+  function renderLegTabs(){
+    document.getElementById('legTabs')?.remove();
+    const title=$('mapTitle');
+    if(!chosen){title.innerHTML='<span>Select an itinerary</span><span></span>';return;}
+    const leg=chosen.legs[selectedLeg];
+    title.innerHTML=`<span><b>${esc(leg.flight_number)}</b> · ${esc(leg.origin.code)} → ${esc(leg.destination.code)}</span><span>${esc(cabinValue())}</span>`;
+    if(chosen.legs.length>1){
+      const div=document.createElement('div'); div.className='tagrow'; div.id='legTabs';
+      div.innerHTML=chosen.legs.map((l,i)=>`<button class="btn ${i===selectedLeg?'btn-primary':'btn-ghost'}" style="padding:5px 8px;font-size:10px" data-leg="${i}">${esc(l.flight_number)}</button>`).join('');
+      title.parentNode.insertBefore(div,$('seatMap'));
+      div.querySelectorAll('[data-leg]').forEach(b=>b.addEventListener('click',async()=>{selectedLeg=Number(b.dataset.leg);document.getElementById('legTabs')?.remove();renderLegTabs();await refreshSeatMap();}));
+    }
+  }
+  async function refreshSeatMap(){
+    if(!chosen)return;
+    const leg=chosen.legs[selectedLeg];
+    try{
+      const q=new URLSearchParams({travel_date:chosen.travel_date,cabin:cabinValue()});
+      const r=await fetch(`/api/flights/${encodeURIComponent(leg.flight_id)}/seats?${q}`); const data=await r.json(); if(!r.ok)throw new Error(data.message||'Seat map unavailable');
+      $('seatMap').innerHTML=data.seats.map(s=>`<div class="seat ${s.available?'':'taken'} ${s.window?'window':''}" title="${esc(s.label)} · ${s.available?'Available':'Reserved'}">${esc(s.label)}</div>`).join('');
+      $('mapTitle').querySelector('span:last-child').textContent=`${data.available}/${data.capacity} free`;
+    }catch(err){$('seatMap').innerHTML=`<div class="subtle" style="grid-column:1/-1">${esc(err.message)}</div>`;}
+  }
+  function openStreams(){
+    if(!chosen)return;
+    const unique=[...new Set(chosen.legs.map(l=>l.flight_id))];
+    for(const id of unique){
+      const q=new URLSearchParams({travel_date:chosen.travel_date,cabin:cabinValue()});
+      const es=new EventSource(`/api/flights/${encodeURIComponent(id)}/events?${q}`); events.push(es);
+      es.addEventListener('snapshot',()=>{activeSubs=events.length;updateLive();});
+      ['booking','cancellation'].forEach(kind=>es.addEventListener(kind,async()=>{await refreshSeatMap();refreshHealth();}));
+      es.onerror=()=>{activeSubs=Math.max(0,activeSubs-1);updateLive();};
+    }
+    activeSubs=events.length;updateLive();
+  }
+  async function book(){
+    if(!chosen)return; const ps=passengers();
+    if(ps.some(p=>!p.name||p.age<0||p.age>125)){showNotice('Please enter a passenger name and a valid age for everyone.','error');return;}
+    $('bookBtn').disabled=true; $('bookBtn').textContent='Booking…';
+    const payload={flight_ids:chosen.legs.map(l=>l.flight_id),travel_date:chosen.travel_date,cabin:cabinValue(),passengers:ps,strategy:$('strategy').value};
+    try{
+      const r=await fetch('/api/bookings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const b=await r.json();if(!r.ok)throw new Error(b.message||'Booking failed');
+      $('bookingResult').classList.add('show');$('bookingResult').innerHTML=`<strong>Booking confirmed · PNR ${esc(b.pnr)}</strong><div class="subtle" style="margin-top:5px">${b.legs.map(l=>`${esc(l.flight_number)}: ${l.seats.map(esc).join(', ')}`).join('<br>')}</div><div style="margin-top:7px;font-weight:800;color:#087449">Total ${money(b.fare.total)}</div>`;
+      showNotice('Your itinerary is booked. Other open tabs will receive live seat updates.','success');await search(true);
+    }catch(err){showNotice(err.message,'error');}
+    $('bookBtn').disabled=!chosen;$('bookBtn').textContent='Book itinerary';
+  }
+  function showNotice(text,kind){const n=$('bookingNotice');n.textContent=text;n.className=`notice show ${kind}`;setTimeout(()=>n.classList.remove('show'),5500);}
+  $('searchBtn').addEventListener('click',()=>search());$('paxCount').addEventListener('change',()=>{renderPassengerFields();if(chosen)search();});$('cabin').addEventListener('change',()=>{if(chosen)search();});$('bookBtn').addEventListener('click',book);
+  $('passengerFields').addEventListener('input',()=>refreshQuote());$('strategy').addEventListener('change',()=>{});
+  loadAirports().then(()=>{renderPassengerFields();refreshHealth();setInterval(refreshHealth,10000);}).catch(()=>{$('results').innerHTML='<div class="empty">Could not load airports; check the API server.</div>';});
+})();
+</script>
+</body>
+</html>
